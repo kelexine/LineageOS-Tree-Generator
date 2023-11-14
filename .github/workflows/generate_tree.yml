@@ -1,4 +1,4 @@
-name: Auto LineageOS Tree Generator
+name: LineageOS Tree Generator
 
 on:
   workflow_dispatch:
@@ -6,31 +6,31 @@ on:
       DUMP_URL:
         description: 'Dump link'
         required: true
-        default: ''
+        default: 'https://gitlab.com/kelexine/tecno-spark-8c-kg5j-rom-dump.git'
       DUMP_BRANCH:
         description: 'Dump branch'
         required: true
-        default: ''
+        default: 'main'
       DEVICE_BRAND:
         description: 'Device manufacturer'
         required: true
-        default: ''
+        default: 'tecno'
       CODENAME:
         description: 'Device codename'
         required: true
-        default: ''
+        default: 'kelly'
       GIT_NAME:
         description: 'GitHub account user name'
         required: true
-        default: ''
+        default: 'kelexine'
       GIT_EMAIL:
         description: 'GitHub account email adress'
         required: true
-        default: ''
+        default: 'frankiekelechi@gmail.com'
 
 jobs:
   build:
-    name: Create LineageOS compatible tree
+    name: Setup
     if: github.event.repository.owner.id == github.event.sender.id
     runs-on: ubuntu-latest
     env:
@@ -79,7 +79,7 @@ jobs:
         cd LOS-Generator
         git clone ${{ env.DU }} -b ${{ env.DUB }}
 
-    - name: İnstalling AOSPDTGEN
+    - name: İnstalling Device Tree Generator
       run: |
         pip3 install aospdtgen
 
